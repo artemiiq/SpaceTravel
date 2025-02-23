@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface TicketDao {
     void save(Ticket ticket);
+
     Ticket findById(Long id);
+
     List<Ticket> findAll();
 }
