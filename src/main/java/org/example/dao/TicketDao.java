@@ -9,4 +9,6 @@ public interface TicketDao {
     Ticket findById(Long id);
 
     List<Ticket> findAll();
+
+    void delete(Long id);
 }

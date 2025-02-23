@@ -28,8 +28,17 @@ public class Ticket {
     public Ticket() {}
 
     public Ticket(Client client, Planet fromPlanet, Planet toPlanet) {
+        if (client == null || fromPlanet == null || toPlanet == null) {
+            throw new IllegalArgumentException("Client and planets cannot be null");
+        }
         this.client = client;
         this.fromPlanet = fromPlanet;
         this.toPlanet = toPlanet;
     }
+
+    public Long getId() { return id; }
+    public Instant getCreatedAt() { return createdAt; }
+    public Client getClient() { return client; }
+    public Planet getFromPlanet() { return fromPlanet; }
+    public Planet getToPlanet() { return toPlanet; }
 }

@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class TicketDaoImpl implements TicketDao {
-
     @Override
     public void save(Ticket ticket) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -29,6 +28,18 @@ public class TicketDaoImpl implements TicketDao {
     public List<Ticket> findAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from Ticket", Ticket.class).list();
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+            Ticket ticket = session.get(Ticket.class, id);
+            if (ticket != null) {
+                session.remove(ticket);
+            }
+            tx.commit();
         }
     }
 }
