@@ -45,7 +45,9 @@ public class ClientDaoImpl implements ClientDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
             Client client = session.get(Client.class, id);
-            if (client != null) session.remove(client);
+            if (client != null){
+                session.remove(client);
+            }
             tx.commit();
         }
     }
