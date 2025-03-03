@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class ClientDaoImpl implements ClientDao {
+
     @Override
     public void save(Client client) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -45,7 +46,7 @@ public class ClientDaoImpl implements ClientDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
             Client client = session.get(Client.class, id);
-            if (client != null){
+            if (client != null) {
                 session.remove(client);
             }
             tx.commit();
